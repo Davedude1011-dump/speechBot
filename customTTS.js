@@ -185,6 +185,24 @@ function speak() {
     else if (text === "simon says") {
         simonSaysOpen()
     }
+
+    else if (text === "000") {
+        document.querySelector(".outer").style.display = "none"
+    }
+
+    else if (text === "summon tank") {
+        document.getElementById("tankToy").style.display = "block"
+    }
+    else if (text === "destroy tank") {
+        document.getElementById("tankToy").style.display = "none"
+    }
+
+    else if (text === "summon balloon" || text === "summon balloons") {
+        document.getElementById("balloonToy").style.display = "block"
+    }
+    else if (text === "destroy balloon" || text === "destroy balloons") {
+        document.getElementById("balloonToy").style.display = "none"
+    }
     
 
     else if (text === "") {
