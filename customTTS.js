@@ -97,7 +97,7 @@ function speak() {
             output = "It's a bit late for that"
           }
     }
-    else if (text === "good evening") {
+    else if (text === "good night") {
         if (hour < 12) {
             output = "It is currently the morning"
           }
@@ -105,7 +105,7 @@ function speak() {
             output = "It is currently the afternoon"
           }
         else {
-            output = "Evening to you too"
+            output = "Good Night to you too"
           }
     }
 
