@@ -161,6 +161,10 @@ function speak() {
     else if (text === "year" || text === "what year is it") {
         output = `We are in ${today.getFullYear()}`
     }
+
+    else if (text === "breathe air") {
+        output = "listen here you subaquatic air breathing fish swimming monkey flying pelican chewing land eater. WHAT COLOR IS YOU'R BUGATTI???"
+    }
     
 
     else if (text === "") {
