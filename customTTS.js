@@ -10,8 +10,11 @@ var text = ""
 var speakIsOn = true
 var textIsOn = true
 var searchBarOn = false
+var simonSaysOn = false
 
 var searchBar = document.getElementById("SearchBarOuter")
+var searchBarInput = document.querySelector(".searchBar")
+var searchBarTitle = document.querySelector(".searchBarTitle")
 var inp = document.querySelector(".inputArea")
 var clock = document.getElementById("clock")
 
@@ -19,7 +22,9 @@ var today = new Date()
 var hour = today.getHours()
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
-];
+]
+const dayNames = ["Monday", "Tuesday", "Wednesday", "Thurdsay", "Friday",
+  "Saturday", "Sunday", ]
 
 function refresh() {
     text = (document.querySelector(".inputArea").value).toLowerCase()
@@ -41,6 +46,7 @@ function searchBarClose() {
         document.querySelector(".speechText").innerHTML = output
     }
     searchBarOn = false
+    simonSaysOn = false
     searchBar.style.display = "none"
     
 }
@@ -67,6 +73,13 @@ function clockOpen() {
 }
 function clockClose() {
     clock.style.display = "none"
+}
+
+function simonSaysOpen() {
+    output = "Opening simonSays"
+    simonSaysOn = true
+    searchBar.style.display = "block"
+    searchBarTitle.innerHTML = "Simon Says"
 }
 
 function speak() {
@@ -142,7 +155,7 @@ function speak() {
         clockOpen()
         output = "Opening clock"
     }
-    else if (text === "what is the time" || text === "whats the time" || text === "time" || text === "date" || text === "day" || text === "what day is it") {
+    else if (text === "what is the time" || text === "what time is it" || text === "time" || text === "date") {
         clockOpen()
         if (hour < 12) {
             output = `the time is ${today.getMinutes()} past ${today.getHours()}`
@@ -155,8 +168,11 @@ function speak() {
         clockClose()
         output = "Closing clock"
     }
+    else if (text === "what day is it" || text === "day") {
+        output = `Today is ${dayNames[(today.getDay()) - 1]}`
+    }
     else if (text === "month" || text === "what month is it") {
-        output = `We are currently in ${monthNames[today.getMonth()]}`
+        output = `We are currently in ${monthNames[(today.getMonth()) - 1]}`
     }
     else if (text === "year" || text === "what year is it") {
         output = `We are in ${today.getFullYear()}`
@@ -164,6 +180,10 @@ function speak() {
 
     else if (text === "breathe air") {
         output = "listen here you subaquatic air breathing fish swimming monkey flying pelican chewing land eater. WHAT COLOR IS YOU'R BUGATTI???"
+    }
+
+    else if (text === "simon says") {
+        simonSaysOpen()
     }
     
 
@@ -193,6 +213,11 @@ window.addEventListener('keydown', (event) => {
 function searchFunction() {
     if (searchBarOn === true) {
         searchBarSearch()
+    }
+    else if (simonSaysOn === true) {
+        output = searchBarInput.value
+        speech.text = output
+        window.speechSynthesis.speak(speech)
     }
     else {
         speak()
