@@ -14,6 +14,14 @@ body {
     left: 50%;
     transform: translate(-50%);
 }
+@media screen and (orientation: portrait) {
+    .aiGif {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+        zoom: 1.2
+    }
+}
 
 .inputArea {
     position: absolute;
