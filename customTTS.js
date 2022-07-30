@@ -13,9 +13,13 @@ var searchBarOn = false
 
 var searchBar = document.getElementById("SearchBarOuter")
 var inp = document.querySelector(".inputArea")
+var clock = document.getElementById("clock")
 
 var today = new Date()
 var hour = today.getHours()
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 
 function refresh() {
     text = (document.querySelector(".inputArea").value).toLowerCase()
@@ -56,6 +60,13 @@ function searchBarSearch() {
     }
     window.open(`https://www.google.com/search?q=${searchText}`)
     searchBarQuietClose()
+}
+
+function clockOpen() {
+    clock.style.display = "block"
+}
+function clockClose() {
+    clock.style.display = "none"
 }
 
 function speak() {
@@ -127,7 +138,34 @@ function speak() {
         searchBarOpen()
     }
 
+    else if (text === "clock" || text === "open clock") {
+        clockOpen()
+        output = "Opening clock"
+    }
+    else if (text === "what is the time" || text === "whats the time" || text === "time" || text === "date" || text === "day" || text === "what day is it") {
+        clockOpen()
+        if (hour < 12) {
+            output = `the time is ${today.getMinutes()} past ${today.getHours()}`
+        }
+        else {
+            output = `the time is ${today.getMinutes()} past ${(today.getHours()) - 12}`
+        }
+    }
+    else if (text === "close clock") {
+        clockClose()
+        output = "Closing clock"
+    }
+    else if (text === "month" || text === "what month is it") {
+        output = `We are currently in ${monthNames[today.getMonth()]}`
+    }
+    else if (text === "year" || text === "what year is it") {
+        output = `We are in ${today.getFullYear()}`
+    }
     
+
+    else if (text === "") {
+        output = ""
+    }
     else {
         output = "i'm sorry, i don't understand"
     }

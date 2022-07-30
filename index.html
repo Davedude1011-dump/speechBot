@@ -2,6 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="CSS.css">
+        <link rel="stylesheet" href="clock.css">
     </head>
     <body>
         <img src="images/aiGif.gif" class="aiGif">
@@ -11,7 +12,20 @@
             <div id="SearchBarOuterHeader">Search Bar<button class="SearchBarCloseButton" onclick="searchBarClose()">&times;</button></div>
             <textarea input class="searchBar"></textarea>
         </div>
+
+        <div id="clock" class="light">
+			<div class="display">
+				<div class="weekdays"></div>
+				<div class="ampm"></div>
+				<div class="alarm"></div>
+				<div class="digits"></div>
+			</div>
+		</div>
+        
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
         <script src="customTTS.js"></script>
         <script src="dragableElement.js"></script>
+        <script src="clock.js"></script>
     </body>
 </html>
