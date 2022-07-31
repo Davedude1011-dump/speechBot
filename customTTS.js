@@ -208,6 +208,33 @@ function speak() {
         document.getElementById("balloonToy").style.display = "none"
         output = "Balloons destroyed"
     }
+
+    else if (text === "summon cat" || text === "summon adam" || text === "spawn adam" || text === "spawn a cat") {
+        document.getElementById("catToy").style.display = "block"
+        output = "Mooly summoned"
+    }
+    else if (text === "destroy cat" || text === "destroy adam" || text === "destroy the cat") {
+        document.getElementById("catToy").style.display = "none"
+        output = "Mooly destroyed"
+    }
+
+    else if (text === "show command list" || text === "open command list" || text === "open commands" || text === "show commands") {
+        window.location.href = 'commandList.html';
+        output = "Opening Command Data"
+    }
+
+    else if (text === "rps" || text === "rock paper scissors") {
+        var RPSnum = Math.floor(Math.random() * 10) + 1;
+        if (RPSnum <= 3) {
+            output = "Rock"
+        }
+        else if (RPSnum <= 6 && RPSnum > 3) {
+            output = "Paper"
+        }
+        else {
+            output = "Scissors"
+        }
+    }
     
 
     else if (text === "") {
@@ -277,7 +304,7 @@ function runSpeechRecognition() {
             var confidence = event.results[0][0].confidence;
             document.querySelector(".inputArea").value = transcript
             speak()
-            console.log(transcript)
+            console.log(confidence)
         };
       
          // start recognition

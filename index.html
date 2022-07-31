@@ -8,9 +8,9 @@
     </head>
     <body>
         <img src="images/aiGif.gif" class="aiGif" onclick="searchFunction()">
-        <p class="speechText">...</p>
+        <div class="speechText">...</div>
+        <div class="topTipText">By the way you can view all commands by saying "open commands"</div>
         <textarea class="inputArea" placeholder="Type here..."></textarea>
-        <button type="button" class="micButton" onclick="runSpeechRecognition()">&#127908;</button>
         <div id="SearchBarOuter">
             <div id="SearchBarOuterHeader"><a class="searchBarTitle">Search Bar</a><button class="SearchBarCloseButton" onclick="searchBarClose()">&times;</button></div>
             <textarea input class="searchBar"></textarea>
@@ -31,6 +31,12 @@
         <div id="balloonToy" class="outer">
             <img id="balloonToyHeader" class="header" src="https://i.gifer.com/5l03.gif"></img>
         </div>
+        <div id="catToy" class="outer">
+            <img id="catToyHeader" class="header" src="images\catToy.png"></img>
+        </div>
+
+
+        <button type="button" class="micButton" onclick="runSpeechRecognition()">&#127908;</button>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>

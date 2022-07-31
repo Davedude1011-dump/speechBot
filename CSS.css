@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Roboto+Condensed:wght@300&display=swap');
 
 * {
     margin: 0;
@@ -52,6 +52,7 @@ body {
     transform: translate(-50%);
     color: white;
     font-size: 45px;
+    font-family: Kanit;
 }
 
 @keyframes textBorderLighter {
@@ -138,4 +139,20 @@ body {
     100% {
         background-color: transparent;
     }
+}
+
+
+.topTipText {
+    display: none;
+    position: absolute;
+    color: white;
+    font-size: 30px;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 1.5%;
+    font-family: Roboto Condensed;
+    font-weight: bold;
+}
+.speechText:hover ~ .topTipText {
+    display: block
 }
