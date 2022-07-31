@@ -23,8 +23,8 @@ var hour = today.getHours()
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ]
-const dayNames = ["Monday", "Tuesday", "Wednesday", "Thurdsay", "Friday",
-  "Saturday", "Sunday", ]
+const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thurdsay", "Friday",
+  "Saturday" ]
 
 function refresh() {
     text = (document.querySelector(".inputArea").value).toLowerCase()
@@ -155,7 +155,7 @@ function speak() {
         clockOpen()
         output = "Opening clock"
     }
-    else if (text === "what is the time" || text === "what time is it" || text === "time" || text === "date") {
+    else if (text === "what's the time" || text === "what time is it" || text === "time" || text === "date") {
         clockOpen()
         if (hour < 12) {
             output = `the time is ${today.getMinutes()} past ${today.getHours()}`
@@ -168,8 +168,8 @@ function speak() {
         clockClose()
         output = "Closing clock"
     }
-    else if (text === "what day is it" || text === "day") {
-        output = `Today is ${dayNames[(today.getDay()) - 1]}`
+    else if (text === "what day is it" || text === "what day is it today" || text === "day") {
+        output = `Today is ${dayNames[(today.getDay())]}`
     }
     else if (text === "month" || text === "what month is it") {
         output = `We are currently in ${monthNames[(today.getMonth()) - 1]}`
@@ -186,22 +186,27 @@ function speak() {
         simonSaysOpen()
     }
 
-    else if (text === "000") {
+    else if (text === "0") {
         document.querySelector(".outer").style.display = "none"
+        output = "All toys have been destroyed"
     }
 
-    else if (text === "summon tank") {
+    else if (text === "summon tank" || text === "spawn a tank" || text === "summon a tank") {
         document.getElementById("tankToy").style.display = "block"
+        output = "Tank summoned"
     }
     else if (text === "destroy tank") {
         document.getElementById("tankToy").style.display = "none"
+        output = "Tank destroyed"
     }
 
-    else if (text === "summon balloon" || text === "summon balloons") {
+    else if (text === "summon balloon" || text === "summon balloons" || text === "spawn a balloon" || text === "spawn balloons") {
         document.getElementById("balloonToy").style.display = "block"
+        output = "Balloons summoned"
     }
     else if (text === "destroy balloon" || text === "destroy balloons") {
         document.getElementById("balloonToy").style.display = "none"
+        output = "Balloons destroyed"
     }
     
 
@@ -219,7 +224,7 @@ function speak() {
     if (textIsOn === true) {
         document.querySelector(".speechText").innerHTML = output
     }
-    inp.value = ""
+    // inp.value = ""
 }
 
 window.addEventListener('keydown', (event) => {
@@ -241,3 +246,40 @@ function searchFunction() {
         speak()
     }
 }
+
+// speech to text (had to be moved here to use speech() function)
+
+// transcript = text given
+
+
+function runSpeechRecognition() {
+    // get output div reference
+    var output = document.getElementById("output");
+    // get action element reference
+    var action = document.getElementById("action");
+        // new speech recognition object
+        var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+        var recognition = new SpeechRecognition();
+    
+        // This runs when the speech recognition service starts
+        recognition.onstart = function() {
+            action.innerHTML = "<small>listening, please speak...</small>";
+        };
+        
+        recognition.onspeechend = function() {
+            action.innerHTML = "<small>stopped listening, hope you are done...</small>";
+            recognition.stop();
+        }
+      
+        // This runs when the speech recognition service returns result
+        recognition.onresult = function(event) {
+            var transcript = event.results[0][0].transcript;
+            var confidence = event.results[0][0].confidence;
+            document.querySelector(".inputArea").value = transcript
+            speak()
+            console.log(transcript)
+        };
+      
+         // start recognition
+         recognition.start();
+  }

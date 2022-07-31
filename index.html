@@ -4,11 +4,13 @@
         <link rel="stylesheet" href="CSS.css">
         <link rel="stylesheet" href="clock.css">
         <link rel="stylesheet" href="dragableElements.css">
+        <link rel="stylesheet" href="STT.css">
     </head>
     <body>
         <img src="images/aiGif.gif" class="aiGif" onclick="searchFunction()">
         <p class="speechText">...</p>
         <textarea class="inputArea" placeholder="Type here..."></textarea>
+        <button type="button" class="micButton" onclick="runSpeechRecognition()">&#127908;</button>
         <div id="SearchBarOuter">
             <div id="SearchBarOuterHeader"><a class="searchBarTitle">Search Bar</a><button class="SearchBarCloseButton" onclick="searchBarClose()">&times;</button></div>
             <textarea input class="searchBar"></textarea>
